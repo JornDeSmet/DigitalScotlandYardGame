@@ -43,7 +43,7 @@ Ensure the following software is installed:
    git clone https://github.com/JornDeSmet/DigitalScotlandYardGame.git
 2. navigate to the project directory
    ```bash
-   cd <DigitalScotlandYardGame>
+   cd DigitalScotlandYardGame
 4. Import the Project into Your IDE:
    - If you're using IntelliJ IDEA, open the project directory directly.
    - For other IDEs, ensure proper support for Maven projects.
