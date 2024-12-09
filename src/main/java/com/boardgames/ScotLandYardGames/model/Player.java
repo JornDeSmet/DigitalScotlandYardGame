@@ -23,8 +23,8 @@ public class Player {
             tickets.put(Transportation.TAXI, Integer.MAX_VALUE);
             tickets.put(Transportation.TRAIN, Integer.MAX_VALUE);
         } else {
-            tickets.put(Transportation.TAXI, 10);
-            tickets.put(Transportation.TRAIN, 4);
+            tickets.put(Transportation.TAXI, 2);
+            tickets.put(Transportation.TRAIN, 2);
         }
     }
 

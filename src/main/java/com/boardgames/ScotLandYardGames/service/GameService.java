@@ -23,14 +23,13 @@ public class GameService {
         waitingPlayers = new ArrayList<>();
     }
 
+    // Joins a player to the game or waits if not enough players
     public synchronized Game joingame(String player) {
-
         if (waitingPlayers.contains(player)) {
             throw new IllegalStateException("Player is already waiting to join a game.");
         }
 
         waitingPlayers.add(player);
-
         if (waitingPlayers.size() == 3) {
             Game newGame = new Game(new ArrayList<>(waitingPlayers));
             games.put(newGame.getGameId(), newGame);
@@ -41,19 +40,15 @@ public class GameService {
         return null;
     }
 
+    // Processes a player's move in the game
     public synchronized Game gamePlay(GameMessage gameMessage) {
         if (!GameStorage.getInstance().getGames().containsKey(gameMessage.getGameId())) {
-            throw new IllegalStateException("game not found");
+            throw new IllegalStateException("Game not found");
         }
+
         Game game = GameStorage.getInstance().getGames().get(gameMessage.getGameId());
         game.makeMove(gameMessage.getPlayer(), gameMessage.getNodeId(), gameMessage.getTransportation());
-
         GameStorage.getInstance().setGame(game);
         return game;
     }
-
-
-
-
-
 }

@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 public class GameMessage {
+    private String type;
     private String player;
     private String gameId;
     private int nodeId;
@@ -41,5 +42,13 @@ public class GameMessage {
 
     public void setTransportation(Transportation transportation) {
         this.transportation = transportation;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

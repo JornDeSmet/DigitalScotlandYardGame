@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scotland Yard Game</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.1/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<!-- Username Page -->
+<div id="username-page" class="page">
+    <form id="usernameForm" class="form">
+        <h1>Welcome to Scotland Yard</h1>
+        <label for="name">Enter your name to join the game:</label>
+        <input type="text" id="name" name="name" placeholder="Your Name" required>
+        <button type="submit" class="btn">Join Game</button>
+    </form>
+</div>
+
+<!-- Game Page -->
+
+<div id="game-page" class="page hidden">
+    <p id="status-message" class="status">Connecting...</p>
+    <div class="game-info">
+        <h1>How to Play</h1>
+        <p>Welcome to the Detective and Suspect game! Here are the rules and objectives:</p>
+        <ul>
+            <li>The game is played between a <strong>Detective</strong> and a <strong>Suspect</strong>.</li>
+            <li>The goal of the Detective is to catch the Suspect by moving to the same position on the map.</li>
+            <li>The Suspect wins if they remain uncaught after <strong>30 rounds</strong>.</li>
+            <li>Detectives and the Suspect can move around the map using either a <strong>taxi</strong> or a <strong>train</strong>.</li>
+            <li>The Suspect has unlimited tickets for travel, but the Detectives have a limited number of tickets.</li>
+            <li>If the Detectives run out of tickets before catching the Suspect, they lose the game.</li>
+            <li>After every <strong>6 rounds</strong>, the Suspect's position will be revealed to the Detectives.</li>
+        </ul>
+    </div>
+    <div id="game-board-header"></div>
+    <div class="game-container">
+
+
+        <!-- Left Column -->
+        <div class="left-column">
+            <div id="game-board" class="game-board">
+                <img id="game-board-img" src="/img/smallversion.webp" alt="Game Board">
+            </div>
+            <div id="legend" class="legend">
+                <h3>Legend</h3>
+                <div class="legend-items">
+                    <div class="legend-item">
+                        <div class="legend-icon train"></div>
+                        <span>Train (Red Stripes)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-icon taxi"></div>
+                        <span>Taxi (Black Stripes)</span>
+                    </div>
+                    <div class="legend-item">
+                        <img src="/img/detective.png" alt="Detective Icon" class="legend-image">
+                        <span>Detective</span>
+                    </div>
+                    <div class="legend-item">
+                        <img src="/img/thief.webp" alt="Suspect Icon" class="legend-image">
+                        <span>Suspect</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="right-column">
+            <div id="turn-indicator" class="turn-indicator"></div>
+            <div id="detective-info" class="detective-info"></div>
+            <form id="move-form" class="form move-form hidden">
+                <label for="transportation">Choose Transportation:</label>
+                <select id="transportation" name="transportation" required>
+                    <option value="" disabled selected>Select Transport</option>
+                    <option value="TRAIN">Train</option>
+                    <option value="TAXI">Taxi</option>
+                </select>
+
+                <label for="node-id">Choose Node ID (1-12):</label>
+                <select id="node-id" name="node-id" required>
+                    <option value="" disabled selected>Select a Node</option>
+                    <!-- Options will be dynamically added/removed -->
+                </select>
+                <button type="submit" class="btn">Submit Move</button>
+            </form>
+
+        </div>
+    </div>
+
+    <div id="markers" style="display:none;">
+        <img id="detective-marker" src="/img/detective.png" alt="Detective Marker">
+        <img id="thief-marker" src="/img/thief.webp" alt="Thief Marker">
+    </div>
+</div>
+
+<script src="/js/script.js"></script>
+</body>
+</html>
